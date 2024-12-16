@@ -1,5 +1,5 @@
-# Benthos-Plugins
-Shared plugins for feedback
+# Redpanda Connect Custom Plugins
+Custom plugins for Redpanda Connect, formerly known as Benthos.
 
 
 **Lumberjack Server Input**
