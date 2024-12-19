@@ -4,14 +4,17 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
-	"io/ioutil"
+	"os"
 
 	"gopkg.in/mcuadros/go-syslog.v2"
 
-	"github.com/benthosdev/benthos/v4/public/service"
+	"github.com/redpanda-data/benthos/v4/public/service"
 
-	// Import all standard Benthos components
-	_ "github.com/benthosdev/benthos/v4/public/components/all"
+	// Import other required Benthos components here, for example...
+	_ "github.com/redpanda-data/connect/v4/public/components/crypto"
+	_ "github.com/redpanda-data/connect/v4/public/components/io"
+	//_ "github.com/redpanda-data/connect/v4/public/components/pure"
+	//_ "github.com/redpanda-data/connect/v4/public/components/elasticsearch"
 )
 
 // struct of the input configuration fields
@@ -64,7 +67,7 @@ func (s *SyslogSvrInput) Connect(ctx context.Context) error {
 
 		// If Client Cert Auth enabled, configure tls.Config to enforce and provide CA cert
 		if s.cliAuth {
-			caCert, err := ioutil.ReadFile(s.caCert)
+			caCert, err := os.ReadFile(s.caCert)
 			if err != nil {
 				return err
 			}
@@ -83,9 +86,7 @@ func (s *SyslogSvrInput) Connect(ctx context.Context) error {
 	}
 
 	server.Boot()
-
 	s.sls = server
-
 	return nil
 }
 
