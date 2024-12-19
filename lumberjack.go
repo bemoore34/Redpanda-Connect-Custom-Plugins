@@ -7,12 +7,13 @@ import (
     "os"
 
     "github.com/elastic/go-lumber/server"
-
-    "github.com/benthosdev/benthos/v4/public/service"
-
-    // Import specific Benthos components
-    _ "github.com/benthosdev/benthos/v4/public/components/crypto"
-    _ "github.com/benthosdev/benthos/v4/public/components/io"
+	"github.com/redpanda-data/benthos/v4/public/service"
+    
+    // Import specific Benthos components - include any other inputs/processors/outputs you want here
+    _ "github.com/redpanda-data/connect/v4/public/components/crypto"
+	_ "github.com/redpanda-data/connect/v4/public/components/io"
+    // For example, if you want to include the Elasticsearch output uncomment the following:
+    //_ "github.com/redpanda-data/connect/v4/public/components/elasticsearch"
 )
 
 // struct of the input configuration fields
